@@ -26,11 +26,15 @@
       </section>
       <nav>
         <ul>
+          {% if user.username %}
           <li><a href={% url "offers" %}>Consulter les offres</a></li>
           <li><a href={% url "post" %}>Postez votre offre</a></li>
           <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "logoutrequest" %}>Déconnexion</a></li>
+          {% else %}
           <li><a href={% url "login" %}>Connexion</a></li>
           <li><a href={% url "register" %}>Créer un compte</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
@@ -40,13 +44,13 @@
         <h2 class="loginHeader">Connexion</h2>
       </hgroup>
       <section>
-        <form>
+        <form action="http://127.0.0.1:8000/loginrequest" method="POST">{% csrf_token %}
           <div class="group">
-            <input type="text" id="username"><span class="highlight"></span><span class="bar"></span>
+            <input type="text" id="username" name="username"><span class="highlight"></span><span class="bar"></span>
             <label>Nom d'utilisateur</label>
           </div>
           <div class="group">
-            <input type="password" id="password"><span class="highlight"></span><span class="bar"></span>
+            <input type="password" id="password" name="password"><span class="highlight"></span><span class="bar"></span>
             <label>Mot de passe</label>
           </div>
           <button id="submit" type="submit" class="button buttonGreen">Connexion
@@ -58,7 +62,5 @@
     <!-- Footer section -->
     <footer>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src={% static "scripts/login.js" %}></script>
   </body>
 </html>

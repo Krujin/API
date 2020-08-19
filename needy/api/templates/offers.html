@@ -26,11 +26,15 @@
       </section>
       <nav>
         <ul>
+          {% if user.username %}
           <li><a href={% url "offers" %}>Consulter les offres</a></li>
           <li><a href={% url "post" %}>Postez votre offre</a></li>
           <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "logoutrequest" %}>Déconnexion</a></li>
+          {% else %}
           <li><a href={% url "login" %}>Connexion</a></li>
           <li><a href={% url "register" %}>Créer un compte</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
@@ -55,7 +59,7 @@
                 <td id="offer_id">{{offer.id}}</td>
                 <td><a id="offer-link" href={% url "viewpost" id=offer.id %}>{{offer.title}}</a></td>
                 <td>${{offer.price}}</td>
-                <td>{{offer.user.firstname}} {{offer.user.lastname}}</td>
+                <td>{{offer.offeror.first_name}} {{offer.offeror.last_name}}</td>
               </tr>
             {% endfor %}
           </tbody>

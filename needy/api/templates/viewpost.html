@@ -26,14 +26,18 @@
       </section>
       <nav>
         <ul>
+          {% if user.username %}
           <li><a href={% url "offers" %}>Consulter les offres</a></li>
           <li><a href={% url "post" %}>Postez votre offre</a></li>
           <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "logoutrequest" %}>Déconnexion</a></li>
+          {% else %}
           <li><a href={% url "login" %}>Connexion</a></li>
           <li><a href={% url "register" %}>Créer un compte</a></li>
+          {% endif %}
         </ul>
       </nav>
-    </header> 
+    </header>
     <!-- Main section -->
     <main>
       <section>

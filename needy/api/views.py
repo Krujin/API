@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.views import View
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
@@ -80,10 +81,19 @@ class Viewpost(TemplateView):
         context['offer'] = Offer.objects.get(id=id)
         return context
 
-# class Profile(TemplateView):
-#     template_name = "profile.html"
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['user'] = Users.objects.get(id=id)
-#         return context
+def LoginRequest(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    print(username, password)
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return HttpResponseRedirect('/profile')
+    else:
+        print(username, password)
+        return HttpResponseRedirect('/login')
+
+def LogoutRequest(request):
+    logout(request)
+    return redirect('index')

@@ -26,11 +26,15 @@
       </section>
       <nav>
         <ul>
+          {% if user.username %}
           <li><a href={% url "offers" %}>Consulter les offres</a></li>
           <li><a href={% url "post" %}>Postez votre offre</a></li>
           <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "logoutrequest" %}>Déconnexion</a></li>
+          {% else %}
           <li><a href={% url "login" %}>Connexion</a></li>
           <li><a href={% url "register" %}>Créer un compte</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
@@ -41,18 +45,19 @@
       </hgroup>
       <section>
         <form>
+          <input type="hidden" id="offeror-id" value={{user.id}}>
           <div class="group">
-            <input type="Title" name="" value="" placeholder=""><span class="highlight"></span  ><span class="bar"></span>
+            <input type="Title" id="title"><span class="highlight"></span  ><span class="bar"></span>
             <label>Titre</label>
           </div>
           <div class="group">
-            <input type="Price" name="" value="" placeholder=""><span class="highlight"></span  ><span class="bar"></span>
+            <input type="Price" id="price"><span class="highlight"></span  ><span class="bar"></span>
             <label>Prix</label>
           </div>
           <div class="group">
-            <textarea name="styled-textarea" id="styled" Placeholder="Description"></textarea>
+            <textarea id="description" name="styled-textarea" id="styled" Placeholder="Description"></textarea>
           </div>
-          <button type="button" class="button buttonGreen">Poster l'annonce
+          <button id="submit" type="submit" class="button buttonGreen">Poster l'annonce
             <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
           </button>
         </form>
@@ -61,5 +66,7 @@
     <!-- Footer section -->
     <footer>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "scripts/post.js" %}></script>
   </body>
 </html>

@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic.base import TemplateView
 
-from api.views import Offers, Viewpost
+from api.views import Offers, Viewpost, LoginRequest, LogoutRequest
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,4 +32,6 @@ urlpatterns = [
     path("register", TemplateView.as_view(template_name="register.html"), name="register"),
     path("viewpost", Viewpost.as_view(), name="viewpost"),
     path("viewpost/<int:id>", Viewpost.as_view(), name="viewpost"),
+    path("loginrequest", LoginRequest, name="loginrequest"),
+    path("logoutrequest", LogoutRequest, name="logoutrequest")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
