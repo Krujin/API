@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+    Name: Valentin Rubio, Tiphaine Laurent, Hugo Martin
+    Date: 05 Août 2020
+    Assignment: Projet libre EPITECH 2019-2020
+    Liste des offres Needy
+-->
+{% load static %}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Valentin Rubio" />
+    <title>Needy</title>
+    <link rel="shortcut icon" href={% static "assets/icon.png" %} />
+    <!-- External CSS stylesheet link -->
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/css-reset.css" %}/>
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/site.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/offers.css" %} />
+  </head>
+
+  <body>
+    <!-- Header section -->
+    <header>
+      <section>
+        <h1><a href={% url "index" %}>Needy</a></h1>
+      </section>
+      <nav>
+        <ul>
+          <li><a href={% url "offers" %}>Consulter les offres</a></li>
+          <li><a href={% url "post" %}>Postez votre offre</a></li>
+          <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "login" %}>Connexion</a></li>
+          <li><a href={% url "register" %}>Créer un compte</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Main section -->
+    <main>
+      <section>
+        <div>
+          <h2>Parcourez les dernières offres postées</h2>
+        </div>
+        <table id="offers">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Titre</th>
+              <th>Prix</th>
+              <th>Vendeur</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for offer in offers %}
+              <tr id="offer">
+                <td id="offer_id">{{offer.id}}</td>
+                <td><a href={% url "viewpost" %}>{{offer.title}}</a></td>
+                <td>${{offer.price}}</td>
+                <td>{{offer.user.firstname}} {{offer.user.lastname}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <!-- Footer section -->
+    <footer>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "scripts/offers.js" %}></script>
+  </body>
+</html>

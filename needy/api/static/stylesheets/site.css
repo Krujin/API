@@ -1,0 +1,94 @@
+:root {
+    --main-color: rgb(40, 39, 37);
+    --second-color: rgb(42,157,143);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto.ttf);
+}
+
+@font-face {
+    font-family: Needy;
+    src: url(../fonts/Better.ttf);
+}
+
+html {
+    font-size: 10px;
+    font-family: Roboto;
+    color: var(--main-color);
+}
+
+*:focus {
+    outline: 0;
+}
+
+/* Header CSS */
+
+header {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.7);
+    background: white;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a:visited {
+    color: var(--second-color);
+}
+
+h1 {
+    font-family: Needy;
+    font-size: 5rem;
+    color: var(--second-color);
+}
+
+header section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header figure {
+    display: flex;
+    justify-content: center;
+}
+
+header figure:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+header nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0.5rem;
+}
+  
+header ul a {
+    padding: 2rem 2rem 0rem 2rem;
+    color: var(--main-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.15rem;
+    text-decoration: none;
+}
+
+header ul a:hover {
+    color: rgb(172, 96, 48);
+    transform: translateY(-2px);
+    transition: 0.3s;
+}
+
+/* Footer CSS */

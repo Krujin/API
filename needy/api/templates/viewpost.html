@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+    Name: Valentin Rubio, Tiphaine Laurent, Hugo Martin
+    Date: 05 Août 2020
+    Assignment: Projet libre EPITECH 2019-2020
+    Consultation d'une annonce Needy
+-->
+{% load static %}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Valentin Rubio" />
+    <title>Needy</title>
+    <link rel="shortcut icon" href={% static "assets/icon.png" %} />
+    <!-- External CSS stylesheet link -->
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/css-reset.css" %}/>
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/site.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/viewpost.css" %} />
+  </head>
+
+  <body>
+    <!-- Header section -->
+    <header>
+      <section>
+        <h1><a href={% url "index" %}>Needy</a></h1>
+      </section>
+      <nav>
+        <ul>
+          <li><a href={% url "offers" %}>Consulter les offres</a></li>
+          <li><a href={% url "post" %}>Postez votre offre</a></li>
+          <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "login" %}>Connexion</a></li>
+          <li><a href={% url "register" %}>Créer un compte</a></li>
+        </ul>
+      </nav>
+    </header> 
+    <!-- Main section -->
+    <main>
+      <section>
+          <h2>{{ offers[0].title }}</h2>
+          <p class="written">Written by {{offers[0].firstname}} {{offers[0].lastname}}</p>
+          <p class="description">{{ offers[0].description }}</p>
+          <p class="contact">Contact me at <a href="">{{offers[0].email}}</a></p>
+      </section>
+    </main>
+    <!-- Footer section -->
+    <footer>
+    </footer>
+    <script src={% static "scripts/offers.js" %}></script>
+  </body>
+</html>

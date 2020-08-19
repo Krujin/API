@@ -17,8 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic.base import TemplateView
+
+from api.views import Offers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("api.urls")),
+    path("", TemplateView.as_view(template_name="index.html"), name="index"),
+    path("Login", TemplateView.as_view(template_name="login.html"), name="login"),
+    path("Offers", Offers.as_view(), name="offers"),
+    path("Post", TemplateView.as_view(template_name="post.html"), name="post"),
+    path("Profile", TemplateView.as_view(template_name="profile.html"), name="profile"),
+    path("Register", TemplateView.as_view(template_name="register.html"), name="register"),
+    path("Viewpost", TemplateView.as_view(template_name="viewpost.html"), name="viewpost"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

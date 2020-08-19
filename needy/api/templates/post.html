@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+    Name: Valentin Rubio, Tiphaine Laurent, Hugo Martin
+    Date: 05 Août 2020
+    Assignment: Projet libre EPITECH 2019-2020
+    Création d'offre Needy
+-->
+{% load static %}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Valentin Rubio" />
+    <title>Needy</title>
+    <link rel="shortcut icon" href={% static "assets/icon.png" %} />
+    <!-- External CSS stylesheet link -->
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/css-reset.css" %}/>
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/site.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/post.css" %} />
+  </head>
+
+  <body>
+    <!-- Header section -->
+    <header>
+      <section>
+        <h1><a href={% url "index" %}>Needy</a></h1>
+      </section>
+      <nav>
+        <ul>
+          <li><a href={% url "offers" %}>Consulter les offres</a></li>
+          <li><a href={% url "post" %}>Postez votre offre</a></li>
+          <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "login" %}>Connexion</a></li>
+          <li><a href={% url "register" %}>Créer un compte</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Main section -->
+    <main>
+      <hgroup>
+        <h2 class="PostHeader">Postez votre offre</h2>
+      </hgroup>
+      <section>
+        <form>
+          <div class="group">
+            <input type="Title" name="" value="" placeholder=""><span class="highlight"></span  ><span class="bar"></span>
+            <label>Titre</label>
+          </div>
+          <div class="group">
+            <input type="Price" name="" value="" placeholder=""><span class="highlight"></span  ><span class="bar"></span>
+            <label>Prix</label>
+          </div>
+          <div class="group">
+            <textarea name="styled-textarea" id="styled" Placeholder="Description"></textarea>
+          </div>
+          <button type="button" class="button buttonGreen">Poster l'annonce
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+          </button>
+        </form>
+      </section>
+    </main>
+    <!-- Footer section -->
+    <footer>
+    </footer>
+    
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="/static/scripts/post.js"></script>
+    <script src="/static/scripts/addsample.js"></script>
+
+  </body>
+</html>

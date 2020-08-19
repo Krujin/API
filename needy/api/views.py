@@ -3,6 +3,8 @@ from django.views import View
 from django.contrib.auth import authenticate
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.base import TemplateView
+
 
 import json
 from http import HTTPStatus
@@ -51,3 +53,11 @@ class MessageView(APIView):
 class ImageView(APIView):
     model = Image
     route = "images"
+
+class Offers(TemplateView):
+    template_name = "offers.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['offers'] = Offer.objects.all()
+        return context

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+    Name: Valentin Rubio, Tiphaine Laurent, Hugo Martin
+    Date: 05 Août 2020
+    Assignment: Projet libre EPITECH 2019-2020
+    Index du site Needy
+-->
+{% load static %}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Valentin Rubio" />
+    <meta name="description" content="Page d'accueil de Needy" />
+    <meta name="keywords" content="Echange, dons, vente, objets" />
+    <title>Needy</title>
+    <link rel="shortcut icon" href={% static "assets/icon.png" %} />
+    <!-- External CSS stylesheet link -->
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/css-reset.css" %}/>
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/site.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "stylesheets/index.css" %} />
+  </head>
+
+  <body>
+    <!-- Header section -->
+    <header>
+      <section>
+        <h1><a href={% url "index" %}>Needy</a></h1>
+      </section>
+      <nav>
+        <ul>
+          <li><a href={% url "offers" %}>Consulter les offres</a></li>
+          <li><a href={% url "post" %}>Postez votre offre</a></li>
+          <li><a href={% url "profile" %}>Votre profil</a></li>
+          <li><a href={% url "login" %}>Connexion</a></li>
+          <li><a href={% url "register" %}>Créer un compte</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Main section -->
+    <main>
+      <section>
+        <h2>
+          Besoin d'un objet en urgence ?
+        </h2>
+        <p>
+          Needy est la pour vous. Echangez avec des milliers de personnes autour de vous, rapidement, facilement.
+        </p>
+        <a href={% url "login" %}>
+          Consulter les offres
+        </a>
+      </section>
+      <figure>
+        <img src={% static "assets/handshake.png" %} alt="Handshake">
+      </figure>
+    </main>
+    <!-- Footer section -->
+    <footer>
+    </footer>
+  </body>
+</html>
