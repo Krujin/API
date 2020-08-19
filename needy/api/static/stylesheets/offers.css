@@ -68,6 +68,8 @@ thead th {
     color: white;
     line-height: 1.2;
     font-weight: 400;
+    text-align: left;
+    text-decoration: underline;
 }
 
 tbody tr:nth-child(even) {

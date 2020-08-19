@@ -42,26 +42,23 @@
       <section>
         <form>
           <div class="group">
-            <input type="text" name="" value="" placeholder="" ><span class="highlight"></span><span class="bar"></span>
+            <input type="text" id="username"><span class="highlight"></span><span class="bar"></span>
             <label>Nom d'utilisateur</label>
           </div>
           <div class="group">
-            <input type="password" name="" value="" placeholder=""><span class="highlight"></span  ><span class="bar"></span>
+            <input type="password" id="password"><span class="highlight"></span><span class="bar"></span>
             <label>Mot de passe</label>
           </div>
-          <button type="button" class="button buttonGreen">Connexion
+          <button id="submit" type="submit" class="button buttonGreen">Connexion
             <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
           </button>
         </form>
       </section>
     </main>
-    
     <!-- Footer section -->
     <footer>
     </footer>
-
-    <script src="/static/scripts/jquery-1.10.2.js"></script>
-    <script src="/static/scripts/login.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "scripts/login.js" %}></script>
   </body>
 </html>

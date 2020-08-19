@@ -53,7 +53,7 @@
             {% for offer in offers %}
               <tr id="offer">
                 <td id="offer_id">{{offer.id}}</td>
-                <td><a href={% url "viewpost" %}>{{offer.title}}</a></td>
+                <td><a id="offer-link" href={% url "viewpost" id=offer.id %}>{{offer.title}}</a></td>
                 <td>${{offer.price}}</td>
                 <td>{{offer.user.firstname}} {{offer.user.lastname}}</td>
               </tr>

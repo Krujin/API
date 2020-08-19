@@ -70,3 +70,20 @@ class Offers(TemplateView):
         context = super().get_context_data(**kwargs)
         context['offers'] = Offer.objects.all()
         return context
+
+class Viewpost(TemplateView):
+    template_name = "viewpost.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id = self.kwargs['id']
+        context['offer'] = Offer.objects.get(id=id)
+        return context
+
+# class Profile(TemplateView):
+#     template_name = "profile.html"
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['user'] = Users.objects.get(id=id)
+#         return context

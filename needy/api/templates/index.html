@@ -33,6 +33,7 @@
           <li><a href={% url "profile" %}>Votre profil</a></li>
           <li><a href={% url "login" %}>Connexion</a></li>
           <li><a href={% url "register" %}>Créer un compte</a></li>
+          Connecté en tant que {{user.first_name}} {{user.last_name}}
         </ul>
       </nav>
     </header>

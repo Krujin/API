@@ -37,15 +37,15 @@
     <!-- Main section -->
     <main>
       <section>
-          <h2>{{ offers[0].title }}</h2>
-          <p class="written">Written by {{offers[0].firstname}} {{offers[0].lastname}}</p>
-          <p class="description">{{ offers[0].description }}</p>
-          <p class="contact">Contact me at <a href="">{{offers[0].email}}</a></p>
+          <h2>{{ offer.title }}</h2>
+          <p class="written">Written by {{offer.offeror}}</p>
+          <p class="description">{{ offer.description }}</p>
       </section>
     </main>
     <!-- Footer section -->
     <footer>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src={% static "scripts/offers.js" %}></script>
   </body>
 </html>
