@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 
+from django.urls import get_resolver
 
 import json
 from http import HTTPStatus
@@ -14,7 +15,11 @@ from django_modelapiview.responses import APIResponse
 
 # Create your views here.
 
-from .models import User, Offer, BasketItem, Message, Image
+from .models import User, Offer, BasketItem, Message, Image, Comment
+
+class URLsView(View):
+    def get(self, request, **kwargs):
+        return APIResponse(HTTPStatus.OK, "URLs available", list(set(v[1] for v in get_resolver(None).reverse_dict.values())))
 
 @method_decorator(csrf_exempt, "dispatch")
 class LoginView(View):
@@ -26,7 +31,7 @@ class LoginView(View):
         if user is not None:
             token = Token({'uid': user.id})
             token.sign()
-            return APIResponse(HTTPStatus.OK, "User logged in", str(token))
+            return APIResponse(HTTPStatus.OK, "User logged in", {'token': str(token), 'user': user.serialize(request)})
         else:
             return APIResponse(HTTPStatus.UNAUTHORIZED, "Wrong user credentials")
 
@@ -53,6 +58,10 @@ class MessageView(APIView):
 class ImageView(APIView):
     model = Image
     route = "images"
+
+class CommentView(APIView):
+    model = Comment
+    route = "comments"
 
 class Offers(TemplateView):
     template_name = "offers.html"

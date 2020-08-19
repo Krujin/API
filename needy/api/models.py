@@ -10,20 +10,23 @@ class User(JSONMixin, AbstractUser):
     """
     """
 
-    json_fields = ['username', 'first_name', 'last_name', 'email', 'phone', 'offers', 'favorites', 'basket', 'messages_sent', 'messages_received']
+    json_fields = ['username', 'password', 'first_name', 'last_name', 'email', 'phone', 'rating', 'latitude', 'longitude', 'offers', 'favorites', 'basket', 'messages_sent', 'messages_received', 'comments']
 
     phone = models.CharField(max_length=15, blank=True, default="")
-    # position = models. # Type to determine
+    rating = models.FloatField(default=0)
+    latitude = models.FloatField(default=0)
+    longitude = models.FloatField(default=0)
 
     favorites = models.ManyToManyField("Offer", related_name="users", blank=True)
     # tickets # Backref from Ticket user 1:N
     # basket # Backref from BasketItem user 1:N
     # messages_sent # Backref from Message user_from 1:N
     # messages_received # Backref from Message user_to 1:N
+    # commments # Backref from Comment user 1:N
 
     def save(self, *args, **kwargs):
         if not "_" in self.password:
-            self.password = make_password(self.password)
+            self.set_password(self.password)
         super().save(*args, **kwargs)
 
 
@@ -31,18 +34,19 @@ class Offer(JSONMixin, models.Model):
     """
     """
 
-    json_fields = ['price', 'title', 'description', 'offeror', 'images']
+    json_fields = ['price', 'title', 'description', 'latitude', 'longitude', 'offeror', 'images', 'comments']
 
     price = models.IntegerField()
     title = models.CharField(max_length=128)
     description = models.TextField()
-    # position = models. # Type to determine
-
+    latitude = models.FloatField(default=0)
+    longitude = models.FloatField(default=0)
 
     offeror = models.ForeignKey("User", on_delete=models.CASCADE, related_name="offers")
     # users # Backref from User favorites N:N
     # images # Backref from Image offer 1:N
     # basketitems # Backref from BasketItem offer 1:N
+    # comments # Backref from Comment offer 1:N
 
 
 class Image(JSONMixin, models.Model):
@@ -80,3 +84,16 @@ class Message(JSONMixin, models.Model):
     to_user = models.ForeignKey("User", on_delete=models.SET_NULL, null=True, related_name="messages_received")
     sent_at = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
+
+
+class Comment(JSONMixin, models.Model):
+    """
+     User comment on an offer
+    """
+
+    json_fields = ['body', 'offer', 'user']
+
+    body = models.TextField()
+
+    offer = models.ForeignKey("Offer", on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name="comments")
