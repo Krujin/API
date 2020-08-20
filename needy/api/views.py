@@ -80,6 +80,7 @@ class Viewpost(TemplateView):
         print(self.kwargs)
         id = self.kwargs['id']
         context['offer'] = Offer.objects.get(id=id)
+        context['allmessages'] = Message.objects.all()
         return context
 
 

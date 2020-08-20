@@ -47,7 +47,7 @@
             <input type="hidden" id="favorites" value={{user.favorites}}>
             <input type="hidden" id="new-favorite" value={{offer.id}}>
             <input type="hidden" id="user-id" value={{user.id}}>
-            <button class="fav" id="favorite-add">Add to favorites</button>
+            <button class="btn" id="favorite-add">Add to favorites</button>
           </form>
       </section>
       <section>
@@ -56,7 +56,28 @@
         <p class="description">Email: {{ offer.offeror.email }}</p>
         <p class="description">Téléphone: {{ offer.offeror.phone }}</p>
         <p class="description">Rating: {{ offer.offeror.rating }}/5</p>
-        <button class="fav" id="contact">Contacter le vendeur</button>
+        <button class="btn" onclick="openChat()" id="contact">Contacter le vendeur</button>
+        <div class="chat-popup" id="chat-popup">
+          <button type="button" class="btn-close" onclick="closeChat()">X</button>
+          <h2>Discussion avec {{ offer.offeror.username }}</h2>
+          {% for message in allmessages %}
+          {% if message.from_user.id == user.id %}
+          <p class="my-messages">{{ message.body }}</p>
+          {% elif message.from_user.id == offer.offeror.id %}
+          <p class="their-messages">{{ message.body }}</p>
+          {% endif %}
+          {% endfor %}
+                        <form class="chat-form">
+          <input type="hidden" id="test1" value={{message.from_user.id}}>
+          <input type="hidden" id="test2" value={{user.id}}>
+          <input type="hidden" id="test3" value={{message.from_user.id}}>
+          <input type="hidden" id="test4" value={{offer.offeror.id}}>
+            <input type="hidden" id="from_user" value={{user.id}}>
+            <input type="hidden" id="to_user" value={{offer.offeror.id}}>
+            <textarea id="message" placeholder="Ecrivez votre message ..." required></textarea>
+            <button type="submit" id="send-msg" class="btn">Envoyer</button>
+          </form>
+        </div>
       </section>
       <section>
         <h2>D'autres offres de ce vendeur</h2>
