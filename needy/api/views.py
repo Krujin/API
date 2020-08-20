@@ -77,6 +77,7 @@ class Viewpost(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        print(self.kwargs)
         id = self.kwargs['id']
         context['offer'] = Offer.objects.get(id=id)
         return context

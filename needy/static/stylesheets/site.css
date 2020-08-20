@@ -33,10 +33,6 @@ header {
     background: white;
 }
 
-header a {
-    text-decoration: none;
-}
-
 header a:visited {
     color: var(--second-color);
 }

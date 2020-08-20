@@ -49,9 +49,15 @@
         <p>
           Needy est la pour vous. Echangez avec des milliers de personnes autour de vous, rapidement, facilement.
         </p>
+        {% if user.username %}
+        <a href={% url "offers" %}>
+          Consulter les offres
+        </a>
+        {% else %}
         <a href={% url "login" %}>
           Consulter les offres
         </a>
+        {% endif %}
       </section>
       <figure>
         <img src={% static "assets/handshake.png" %} alt="Handshake">

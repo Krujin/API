@@ -41,11 +41,24 @@
     <!-- Main section -->
     <main>
       <section>
-
+        <h2 class="written">Bienvenue, {{user.first_name}} {{user.last_name}}</h2>
+        <p>Votre position: LAT:{{user.latitude}} LON:{{user.longitude}}</p>
+        <form>
+          <input type="hidden" id="user-id" name="user-id" value={{user.id}}>
+          <div>
+            <input type="password" id="password" name="password"><span class="highlight"></span  ><span class="bar"></span>
+            <label>Nouveau mot de passe</label>
+          </div>
+          <button id="submit" type="submit" class="button buttonGreen">Changer de mot de passe
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+          </button>
+        </form>
       </section>
     </main>
     <!-- Footer section -->
     <footer>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "scripts/profile.js" %}></script>
   </body>
 </html>
