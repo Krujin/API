@@ -63,11 +63,22 @@ table thead tr {
     color: white;
 }
 
+thead th:nth-child(1){
+    font-size: 18px;
+    color: white;
+    line-height: 1.2;
+    font-weight: 400;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: underline;
+}
+
 thead th {
     font-size: 18px;
     color: white;
     line-height: 1.2;
     font-weight: 400;
+    padding: 1rem;
     text-align: left;
     text-decoration: underline;
 }

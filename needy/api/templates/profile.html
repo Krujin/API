@@ -42,17 +42,8 @@
     <main>
       <section>
         <h2 class="written">Bienvenue, {{user.first_name}} {{user.last_name}}</h2>
+        <p>Votre Rating: {{user.rating}}/5  </p>
         <p>Votre position: LAT:{{user.latitude}} LON:{{user.longitude}}</p>
-        <form>
-          <input type="hidden" id="user-id" name="user-id" value={{user.id}}>
-          <div>
-            <input type="password" id="password" name="password"><span class="highlight"></span  ><span class="bar"></span>
-            <label>Nouveau mot de passe</label>
-          </div>
-          <button id="submit" type="submit" class="button buttonGreen">Changer de mot de passe
-            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-          </button>
-        </form>
       </section>
       <section>
         <h2 class="written">Vos favoris</h2>
@@ -76,6 +67,18 @@
             {% endfor %}
           </tbody>
         </table>
+      </section>
+      <section>
+        <h2>Changer de mot de passe</h2>
+        <form>
+          <input type="hidden" id="user-id" name="user-id" value={{user.id}}>
+          <div>
+            <input type="password" id="password" name="password"><span class="highlight"></span  ><span class="bar"></span>
+          </div>
+          <button id="submit" type="submit" class="button buttonGreen">Changer de mot de passe
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+          </button>
+        </form>
       </section>
     </main>
     <!-- Footer section -->
