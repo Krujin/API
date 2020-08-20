@@ -43,6 +43,10 @@ h1 {
     color: var(--second-color);
 }
 
+h1 a {
+    text-decoration: none;
+}
+
 header section {
     display: flex;
     justify-content: center;

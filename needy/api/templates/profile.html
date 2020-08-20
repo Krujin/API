@@ -54,11 +54,35 @@
           </button>
         </form>
       </section>
+      <section>
+        <h2 class="written">Vos favoris</h2>
+        <table id="offers">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Titre</th>
+              <th>Prix</th>
+              <th>Vendeur</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for favorite in user.favorites.all %}
+              <tr id="offer">
+                <td id="offer_id">{{favorite.id}}</td>
+                <td><a id="offer-link" href={% url "viewpost" id=favorite.id %}>{{favorite.title}}</a></td>
+                <td>${{favorite.price}}</td>
+                <td>{{favorite.offeror.first_name}} {{favorite.offeror.last_name}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
     </main>
     <!-- Footer section -->
     <footer>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src={% static "scripts/profile.js" %}></script>
+    <script src={% static "scripts/offers.js" %}></script>
   </body>
 </html>

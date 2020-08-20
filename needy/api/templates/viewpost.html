@@ -42,14 +42,53 @@
     <main>
       <section>
           <h2>{{ offer.title }}</h2>
-          <p class="written">Written by {{offer.offeror}}</p>
           <p class="description">{{ offer.description }}</p>
+          <form>
+            <input type="hidden" id="favorites" value={{user.favorites}}>
+            <input type="hidden" id="new-favorite" value={{offer.id}}>
+            <input type="hidden" id="user-id" value={{user.id}}>
+            <button class="fav" id="favorite-add">Add to favorites</button>
+          </form>
+      </section>
+      <section>
+        <h2>A propos du vendeur</h2>
+        <p class="written">{{ offer.offeror.first_name }} {{ offer.offeror.last_name }}</p>
+        <p class="description">Email: {{ offer.offeror.email }}</p>
+        <p class="description">Téléphone: {{ offer.offeror.phone }}</p>
+        <p class="description">Rating: {{ offer.offeror.rating }}/5</p>
+        <button class="fav" id="contact">Contacter le vendeur</button>
+      </section>
+      <section>
+        <h2>D'autres offres de ce vendeur</h2>
+        <table id="offers">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Titre</th>
+              <th>Prix</th>
+              <th>Vendeur</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for offeroroffer in offer.offeror.offers.all %}
+            {% if offeroroffer.id != offer.id %}
+            <tr id="offer">
+              <td id="offer_id">{{offeroroffer.id}}</td>
+              <td><a id="offer-link" href={% url "viewpost" id=offeroroffer.id %}>{{offeroroffer.title}}</a></td>
+              <td>${{offeroroffer.price}}</td>
+              <td>{{offeroroffer.offeror.first_name}} {{offeroroffer.offeror.last_name}}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
       </section>
     </main>
     <!-- Footer section -->
     <footer>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src={% static "scripts/viewpost.js" %}></script>
     <script src={% static "scripts/offers.js" %}></script>
   </body>
 </html>
